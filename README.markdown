@@ -10,8 +10,7 @@ By mary rose cook
 
 Snowflake lets you run a piece of code once, or every two seconds, or when a value changes, or when it stops changing.  It is useful for debugging a function that is run frequently.
 
-<pre><code>
-var s = new Snowflake();
+<pre><code>var s = new Snowflake();
 var problemFunc = function() {
   var interestingVar = 0;
 
