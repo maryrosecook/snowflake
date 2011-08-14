@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Snowflake.js</title>
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link rel="shortcut icon" type="image/x-png" href="favicon.png" />
+  </head>
+  <body>
+    <h1>Snowflake.js</h1>
+    &nbsp;by <a href='http://maryrosecook.com'>mary rose cook</a><br/>
+    Run code in beautiful and unique situations<br/>
+
+    <h2>What is this library?</h2>
+    <p>
+      Snowflake lets you run a piece of code once, or every two seconds, or when a value changes, or when it stops changing.  It is useful for debugging a function that is run very frequently.
+    </p>
+
+    <pre><code>
+      // import Snowflake
+
+      var s = new Snowflake();
+      var problemFunc = function() {
+        var interestingVar = 0;
+        // insert function machinations here
+
+        // print out interestingVar once, even if problemFunc is run more than once
+        s.once(function() {
+          console.log(interestingVar);
+        });
+
+        // print out interestingVar every two seconds
+        s.every(2, function() {
+          console.log(interestingVar);
+        });
+
+        // print out interestingVar if it has not changed since the last run
+        s.stuck([interestingVar], function() {
+          console.log(interestingVar);
+        });
+      }
+    </code></pre>
+
+    <h2>Licence</h2>
+
+    <p>
+      The <a href='http://github.com/maryrosecook/machinejs'>code</a> is open source, under the MIT licence.
+
+    <h2>Demo</h2>
+    <p>
+      A tiny ecosystem is living right now in your browser debug console.  Rain falls, the sun shines.
+      An oak tree absorbs water and sunlight, makes energy and grows.  Open your console and see.
+    </p>
+    <p>
+      View source to see the code.
+    </p>
+
+    <h2>Tutorial</h2>
+
+    <h3>1. A primer on behaviour trees</h3>
+
+    <p>
+      A behaviour tree is a normal state machine, except the states are connected in
+      a hierarchical structure.  At fork states, the object controlled by the tree does
+      nothing.  A fork state simply leads into one of a set of subsequent states (their
+      children).  At leaf states - states with no children - action is taken by the object.
+    </p>
+
+    <p>
+      Movement from state to state is controlled by two mechanisms: strategies and can functions.
+      Each fork state has a strategy that determines which child state to move to.
+      Each state has a can function that returns true if the object is allowed to move to
+      that state.
+    </p>
+
+    <h3>2. Import libraries</h3>
+    <p>
+      You will need to import machine.js and base.js.  If you are running your behaviour tree in
+      a web page, you might do that like this:
+
+      <script src="https://gist.github.com/991347.js?file=import.js"></script>
+    </p>
+
+    <h3>3. Define an object</h3>
+    <p>
+      Define the object that will be controlled by the behaviour tree.
+      Any normal JavaScript object will do.
+    </p>
+
+    <script src="https://gist.github.com/991347.js?file=landscape.js"></script>
+
+    <h3>4. Write a behaviour tree</h3>
+
+    <p>
+      Write some JSON that defines your object's behaviour tree.
+    </p>
+
+    <script src="https://gist.github.com/991347.js?file=landscapebehaviour.js"></script>
+
+    <h3>5. Add behaviours to your object</h3>
+    <p>
+      For each state in your behaviour tree, add a synonymous function to your object.
+      This will be run once when the object moves to the corresponding state.  For each state,
+      also add a function called <code>canNameOfState</code>.  This should return true if
+      the object is allowed to move to the corresponding state.
+    </p>
+
+    <p>
+      For example, if your state is called <code>kiss</code>, you would add a function to your
+      object called <code>kiss</code> that does the kissing, and a function called <code>canKiss</code>
+      that returns true if kissing is allowed.
+    </p>
+
+    <script src="https://gist.github.com/991347.js?file=landscapewithbehaviour.js"></script>
+
+    <h3>6. Put it all together</h3>
+    <p>
+      Instantiate your object.  Make an instance of Machine.  Use the instance of machine
+      to generate a behaviour tree, passing in the tree JSON and your object.  Repeatedly
+      call <code>tick()</code> on the state machine.
+    </p>
+
+    <script src="https://gist.github.com/991347.js?file=alltogether.js"></script>
+
+    <h2>Reference</h2>
+
+    <h3>Syntax of the JSON</h3>
+    <p>
+      States are defined as JSON hashes.  All must have an identifier property that is
+      set to the name of the state.  Fork states also have a strategy property and a children
+      property that is set to a list of subsequent states.
+    </p>
+
+    <h3>Can functions</h3>
+    <p>
+      Each state in the machine has a corresponding can function on the object
+      controlled by the state machine called <code>canNameOfState</code>.
+      This returns true if the object can move to this state.  You can omit
+      this function if the state is always applicible.
+    </p>
+
+    <h3>Strategies</h3>
+    <p>
+      Fork states are those that have children.  A fork state has a strategy
+      assigned to it that determines which state the machine should move
+      to from a fork state.  Machine.js supports two strategies:
+    </p>
+
+    <h4>Prioritised</h4>
+
+    <p>
+      Call the can function of the first child.  If it
+      returns true, move to that child state.  If it does not, try the
+      next child, and so on.  Once a child has been run, or the final
+      child has been tested and returns false, go back to the parent fork state.
+    </p>
+
+    <h4>Sequential</h4>
+
+    <p>
+      Go through all the child states, executing each one
+      for which the corresponding can function returns true.  Once all
+      the children have been processed, move back to the parent fork state.
+    </p>
+
+   </body>
+ </html>
