@@ -1,17 +1,16 @@
 #Snowflake.js
 Run code in beautiful and unique situations
-http://snowflakejs.maryrosecook.com
 
 By mary rose cook
-http://maryrosecook.com
-maryrosecook@maryrosecook.com
+
+* http://maryrosecook.com
+* maryrosecook@maryrosecook.com
 
 ##What is Snowflake.js?
 
-Snowflake lets you run a piece of code once, or every two seconds, or when a value changes, or when it stops changing.  It is useful for debugging a function that is run very frequently.
+Snowflake lets you run a piece of code once, or every two seconds, or when a value changes, or when it stops changing.  It is useful for debugging a function that is run frequently.
 
-<pre><code>
-  // import Snowflake
+<pre><code>// import Snowflake
 
   var s = new Snowflake();
   var problemFunc = function() {
@@ -45,6 +44,6 @@ The code is open source, under the MIT licence.
 
 * Import snowflake.js into your code.
 
-* Instantiate and use Snowflake as above.
+* Instantiate and use Snowflake as in the code sample above.
 
-* See index.html for documentation.
+* See index.html for details of once(), every(), stuck() and change().

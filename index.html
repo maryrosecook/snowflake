@@ -12,155 +12,63 @@
 
     <h2>What is this library?</h2>
     <p>
-      Snowflake lets you run a piece of code once, or every two seconds, or when a value changes, or when it stops changing.  It is useful for debugging a function that is run very frequently.
+      Snowflake lets you run a piece of code once, or every two seconds, or when a value changes, or when it stops changing.  It is useful for debugging a function that is run frequently.
     </p>
 
-    <pre><code>
-      // import Snowflake
-
-      var s = new Snowflake();
-      var problemFunc = function() {
-        var interestingVar = 0;
-        // insert function machinations here
-
-        // print out interestingVar once, even if problemFunc is run more than once
-        s.once(function() {
-          console.log(interestingVar);
-        });
-
-        // print out interestingVar every two seconds
-        s.every(2, function() {
-          console.log(interestingVar);
-        });
-
-        // print out interestingVar if it has not changed since the last run
-        s.stuck([interestingVar], function() {
-          console.log(interestingVar);
-        });
-      }
-    </code></pre>
+    <script src="https://gist.github.com/1144952.js?file=quickexamples.js"></script>
 
     <h2>Licence</h2>
 
     <p>
-      The <a href='http://github.com/maryrosecook/machinejs'>code</a> is open source, under the MIT licence.
-
-    <h2>Demo</h2>
-    <p>
-      A tiny ecosystem is living right now in your browser debug console.  Rain falls, the sun shines.
-      An oak tree absorbs water and sunlight, makes energy and grows.  Open your console and see.
-    </p>
-    <p>
-      View source to see the code.
-    </p>
-
-    <h2>Tutorial</h2>
-
-    <h3>1. A primer on behaviour trees</h3>
-
-    <p>
-      A behaviour tree is a normal state machine, except the states are connected in
-      a hierarchical structure.  At fork states, the object controlled by the tree does
-      nothing.  A fork state simply leads into one of a set of subsequent states (their
-      children).  At leaf states - states with no children - action is taken by the object.
-    </p>
-
-    <p>
-      Movement from state to state is controlled by two mechanisms: strategies and can functions.
-      Each fork state has a strategy that determines which child state to move to.
-      Each state has a can function that returns true if the object is allowed to move to
-      that state.
-    </p>
-
-    <h3>2. Import libraries</h3>
-    <p>
-      You will need to import machine.js and base.js.  If you are running your behaviour tree in
-      a web page, you might do that like this:
-
-      <script src="https://gist.github.com/991347.js?file=import.js"></script>
-    </p>
-
-    <h3>3. Define an object</h3>
-    <p>
-      Define the object that will be controlled by the behaviour tree.
-      Any normal JavaScript object will do.
-    </p>
-
-    <script src="https://gist.github.com/991347.js?file=landscape.js"></script>
-
-    <h3>4. Write a behaviour tree</h3>
-
-    <p>
-      Write some JSON that defines your object's behaviour tree.
-    </p>
-
-    <script src="https://gist.github.com/991347.js?file=landscapebehaviour.js"></script>
-
-    <h3>5. Add behaviours to your object</h3>
-    <p>
-      For each state in your behaviour tree, add a synonymous function to your object.
-      This will be run once when the object moves to the corresponding state.  For each state,
-      also add a function called <code>canNameOfState</code>.  This should return true if
-      the object is allowed to move to the corresponding state.
-    </p>
-
-    <p>
-      For example, if your state is called <code>kiss</code>, you would add a function to your
-      object called <code>kiss</code> that does the kissing, and a function called <code>canKiss</code>
-      that returns true if kissing is allowed.
-    </p>
-
-    <script src="https://gist.github.com/991347.js?file=landscapewithbehaviour.js"></script>
-
-    <h3>6. Put it all together</h3>
-    <p>
-      Instantiate your object.  Make an instance of Machine.  Use the instance of machine
-      to generate a behaviour tree, passing in the tree JSON and your object.  Repeatedly
-      call <code>tick()</code> on the state machine.
-    </p>
-
-    <script src="https://gist.github.com/991347.js?file=alltogether.js"></script>
+      The <a href='http://github.com/maryrosecook/snowflakejs'>code</a> is open source, under the MIT licence.
 
     <h2>Reference</h2>
 
-    <h3>Syntax of the JSON</h3>
+    <h3>The basic idea</h3>
     <p>
-      States are defined as JSON hashes.  All must have an identifier property that is
-      set to the name of the state.  Fork states also have a strategy property and a children
-      property that is set to a list of subsequent states.
+      There are four functions in Snowflake: <code>once()</code>, <code>every()</code>, <code>stuck()</code> and <code>change()</code>.  They are all used in the same basic way:
+
+      <script src="https://gist.github.com/1144952.js?file=basicidea.js"></script>
+
+      First, you make an instance of Snowflake.  Second, you call a snowflake function
+      on the instance.  Third, you pass arguments that the snowflake function needs (like an interval
+      for the <code>every()</code> function).  Fourth, you pass the action function to run.
+      Fifth, optionally, you pass an argument that will get passed into the action function.
     </p>
 
-    <h3>Can functions</h3>
+    <h3>once()</h3>
     <p>
-      Each state in the machine has a corresponding can function on the object
-      controlled by the state machine called <code>canNameOfState</code>.
-      This returns true if the object can move to this state.  You can omit
-      this function if the state is always applicible.
+      <script src="https://gist.github.com/1144952.js?file=once.js"></script>
+
+      <code>optionalArgument</code> gets passed into the action function.
     </p>
 
-    <h3>Strategies</h3>
+    <h3>every()</h3>
     <p>
-      Fork states are those that have children.  A fork state has a strategy
-      assigned to it that determines which state the machine should move
-      to from a fork state.  Machine.js supports two strategies:
+      <script src="https://gist.github.com/1144952.js?file=every.js"></script>
+
+      <code>interval</code> is an integer and is in seconds.<br/>
+      <code>optionalArgument</code> gets passed into the action function.
     </p>
 
-    <h4>Prioritised</h4>
-
+    <h3>stuck()</h3>
     <p>
-      Call the can function of the first child.  If it
-      returns true, move to that child state.  If it does not, try the
-      next child, and so on.  Once a child has been run, or the final
-      child has been tested and returns false, go back to the parent fork state.
+      <script src="https://gist.github.com/1144952.js?file=stuck.js"></script>
+
+      The first argument is an array of variables to watch.<br/>
+      If <code>watchVar1</code> or <code>watchVar2</code> have the same value
+      as the previous go round, the action function is run.<br/>
+      <code>optionalArgument</code> gets passed into the action function.
     </p>
 
-    <h4>Sequential</h4>
-
+    <h3>change()</h3>
     <p>
-      Go through all the child states, executing each one
-      for which the corresponding can function returns true.  Once all
-      the children have been processed, move back to the parent fork state.
-    </p>
+      <script src="https://gist.github.com/1144952.js?file=change.js"></script>
 
+      The first argument is an array of variables to watch.<br/>
+      If <code>watchVar1</code> or <code>watchVar2</code> have a different value
+      to the previous go round, the action function is run.<br/>
+      <code>optionalArgument</code> gets passed into the action function.
+    </p>
    </body>
  </html>
