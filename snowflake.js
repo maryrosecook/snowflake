@@ -7,6 +7,8 @@
 */
 
 ;(function() {
+  // Snowflake.js
+
   function Snowflake() {
     this.actions = {};
   };
@@ -71,6 +73,7 @@
     },
 
     run: function(action, arg) {
+      // maybe if action is not function then just console.log
       action(arg);
     },
 
@@ -82,13 +85,10 @@
       var id = this.id(action);
       if(this.actions[id] === undefined)
         this.actions[id] = { watchValues: watchValues };
-      else if(this.actions[id].spent !== true)
+      else
       {
         if(watchValueTest(this.actions[id].watchValues, watchValues) === true)
-        {
           this.run(action, arg);
-          this.actions[id].spent = true;
-        }
 
         // update watchValues
         this.actions[id].watchValues = watchValues;
