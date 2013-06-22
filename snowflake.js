@@ -1,14 +1,12 @@
 ;(function() {
-  function Snowflake() {
-    this.actions = {};
-  };
+  var actions = {};
 
-  Snowflake.prototype = {
+  exports.snowflake = {
     // runs the passed action once, passing in an optional arg
     once: function(action, arg) {
       var id = makeId(action);
-      if(this.actions[id] === undefined) {
-        this.actions[id] = "whatever";
+      if(actions[id] === undefined) {
+        actions[id] = "whatever";
         return run(action, arg);
       }
     },
@@ -16,14 +14,18 @@
     // runs action every interval seconds, passing optional arg
     every: function(interval, action, arg) {
       var id = makeId(action);
-      if(this.actions[id] === undefined) {
-        this.actions[id] = {
+      if(actions[id] === undefined) {
+        actions[id] = {
           nextRun: calculateNextRun(interval)
         };
-      } else if(this.actions[id].nextRun < new Date().getTime()) {
-        this.actions[id].nextRun = calculateNextRun(interval);
+      } else if(actions[id].nextRun < new Date().getTime()) {
+        actions[id].nextRun = calculateNextRun(interval);
         return run(action, arg);
       }
+    },
+
+    reset: function() {
+      actions = {};
     }
   };
 
@@ -55,6 +57,4 @@
   var calculateNextRun = function(interval) {
     return new Date().getTime() + interval;
   };
-
-  this.Snowflake = Snowflake;
 }).call(this);

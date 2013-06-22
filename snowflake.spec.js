@@ -1,9 +1,9 @@
-var Snowflake = require('./snowflake').Snowflake;
+var s = require('./snowflake').snowflake;
 
 describe('snowflake', function() {
-  var s, run, fn;
+  var run, fn;
   beforeEach(function() {
-    s = new Snowflake();
+    s.reset();
     run = 0;
     fn = function() {
       return ++run;
