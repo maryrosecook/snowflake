@@ -7,8 +7,7 @@
     // runs the passed action once, passing in an optional arg
     once: function(action, arg) {
       var id = this.id(action);
-      if(this.actions[id] === undefined)
-      {
+      if(this.actions[id] === undefined) {
         this.actions[id] = "whatever";
         return this.run(action, arg);
       }
@@ -17,14 +16,11 @@
     // runs action every interval seconds, passing optional arg
     every: function(interval, action, arg) {
       var id = this.id(action);
-      if(this.actions[id] === undefined)
-      {
+      if(this.actions[id] === undefined) {
         this.actions[id] = {
           nextRun: this.calculateNextRun(interval)
         };
-      }
-      else if(this.actions[id].nextRun < new Date().getTime())
-      {
+      } else if(this.actions[id].nextRun < new Date().getTime()) {
         this.actions[id].nextRun = this.calculateNextRun(interval);
         return this.run(action, arg);
       }
@@ -46,12 +42,12 @@
 
     watchedValueAction: function(watchValues, watchValueTest, action, arg) {
       var id = this.id(action);
-      if(this.actions[id] === undefined)
+      if(this.actions[id] === undefined) {
         this.actions[id] = { watchValues: watchValues };
-      else
-      {
-        if(watchValueTest(this.actions[id].watchValues, watchValues) === true)
+      } else {
+        if(watchValueTest(this.actions[id].watchValues, watchValues) === true) {
           this.run(action, arg);
+        }
 
         // update watchValues
         this.actions[id].watchValues = watchValues;
@@ -64,8 +60,7 @@
 	    if(str.length === 0)
         return hash;
 
-	    for (i = 0; i < str.length; i++)
-      {
+	    for (i = 0; i < str.length; i++) {
 	      var char = str.charCodeAt(i);
 	      var hash = ((hash << 5) -hash ) + char;
 	      hash = hash & hash;
