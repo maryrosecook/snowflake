@@ -9,8 +9,8 @@
       var id = this.id(action);
       if(this.actions[id] === undefined)
       {
-        this.run(action, arg);
         this.actions[id] = "whatever";
+        return this.run(action, arg);
       }
     },
 
@@ -25,8 +25,8 @@
       }
       else if(this.actions[id].nextRun < new Date().getTime())
       {
-        this.run(action, arg);
         this.actions[id].nextRun = this.calculateNextRun(interval);
+        return this.run(action, arg);
       }
     },
 
