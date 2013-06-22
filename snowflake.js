@@ -30,33 +30,6 @@
       }
     },
 
-    // runs action when watchValues stop changing, passing optional arg
-    stuck: function(watchValues, action, arg) {
-      this.watchedValueAction(watchValues, function(orig, current) {
-        for(var i = 0; i < orig.length; i++)
-          if(orig[i] !== current[i])
-            return false;
-
-        return true;
-      }, action, arg);
-    },
-
-    // runs action when watchValues start changing, passing optional arg
-    change: function(watchValues, action, arg) {
-      this.watchedValueAction(watchValues, function(orig, current) {
-        for(var i = 0; i < orig.length; i++)
-          if(orig[i] !== current[i])
-            return true;
-
-        return false;
-      }, action, arg);
-    },
-
-    // pretend like this action was never added
-    reset: function(action) {
-      delete this.actions[this.id(action)];
-    },
-
     // takes function, stringifies it and turns it into a hash to create an identifier
     id: function(action) {
       return this.hashString(action.toString());
