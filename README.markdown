@@ -8,7 +8,7 @@ By mary rose cook
 
 ##What is Snowflake.js?
 
-Snowflake lets you run a piece of code once, or every two seconds, or when a value changes, or when it stops changing.  It is useful for debugging a function that is run frequently.
+Snowflake lets you run a piece of code once, or every so often.  It is useful for debugging a function that is run frequently.
 
 <pre><code>var s = new Snowflake();
 var problemFunc = function() {
@@ -20,14 +20,9 @@ var problemFunc = function() {
   });
 
   // print out interestingVar every two seconds
-  s.every(2, function() {
+  s.every(function() {
     console.log(interestingVar);
-  });
-
-  // print out interestingVar if it has not changed since the last run
-  s.stuck([interestingVar], function() {
-    console.log(interestingVar);
-  });
+  }, 2000);
 }
 </code></pre>
 
