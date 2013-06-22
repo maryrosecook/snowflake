@@ -32,8 +32,9 @@
   // taken from: http://werxltd.com/wp/2010/05/13/javascript-implementation-of-javas-string-hashcode-method/
   var hashString = function(str) {
     var hash = 0;
-	  if(str.length === 0)
+	  if(str.length === 0) {
       return hash;
+    }
 
 	  for (i = 0; i < str.length; i++) {
 	    var char = str.charCodeAt(i);
