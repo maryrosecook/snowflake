@@ -1,14 +1,4 @@
-/*
-  Snowflake.js
-  by mary rose cook
-  http://github.com/maryrosecook/snowflakejs
-
-  Run code in beautiful and unique situations.
-*/
-
 ;(function() {
-  // Snowflake.js
-
   function Snowflake() {
     this.actions = {};
   };
