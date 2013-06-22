@@ -40,20 +40,6 @@
       return new Date().getTime() + interval;
     },
 
-    watchedValueAction: function(watchValues, watchValueTest, action, arg) {
-      var id = this.id(action);
-      if(this.actions[id] === undefined) {
-        this.actions[id] = { watchValues: watchValues };
-      } else {
-        if(watchValueTest(this.actions[id].watchValues, watchValues) === true) {
-          this.run(action, arg);
-        }
-
-        // update watchValues
-        this.actions[id].watchValues = watchValues;
-      }
-    },
-
     // taken from: http://werxltd.com/wp/2010/05/13/javascript-implementation-of-javas-string-hashcode-method/
     hashString: function(str) {
       var hash = 0;
