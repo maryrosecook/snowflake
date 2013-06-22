@@ -68,7 +68,7 @@
     },
 
     calculateNextRun: function(interval) {
-      return new Date().getTime() + (interval * 1000);
+      return new Date().getTime() + interval;
     },
 
     watchedValueAction: function(watchValues, watchValueTest, action, arg) {
