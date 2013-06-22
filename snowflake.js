@@ -2,17 +2,17 @@
   var actions = {};
 
   exports.snowflake = {
-    // runs the passed action once, passing in an optional arg
-    once: function(action, arg) {
+    // runs the passed action once
+    once: function(action) {
       var id = makeId(action);
       if(actions[id] === undefined) {
         actions[id] = "whatever";
-        return run(action, arg);
+        return run(action);
       }
     },
 
-    // runs action every interval seconds, passing optional arg
-    every: function(interval, action, arg) {
+    // runs action every interval seconds
+    every: function(interval, action) {
       var id = makeId(action);
       if(actions[id] === undefined) {
         actions[id] = {
@@ -20,7 +20,7 @@
         };
       } else if(actions[id].nextRun < new Date().getTime()) {
         actions[id].nextRun = calculateNextRun(interval);
-        return run(action, arg);
+        return run(action);
       }
     },
 
@@ -49,9 +49,9 @@
     return hashString(action.toString());
   };
 
-  var run = function(action, arg) {
+  var run = function(action) {
     // maybe if action is not function then just console.log
-    return action(arg);
+    return action();
   };
 
   var calculateNextRun = function(interval) {
