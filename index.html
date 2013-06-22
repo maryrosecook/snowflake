@@ -1,85 +1,62 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <title>Snowflake.js</title>
-    <link rel="stylesheet" type="text/css" href="main.css" />
-    <link rel="shortcut icon" type="image/x-png" href="favicon.png" />
-  </head>
-  <body>
-    <h1>Snowflake.js</h1>
-    &nbsp;by <a href='http://maryrosecook.com'>mary rose cook</a><br/>
-    Run code in beautiful and unique situations<br/>
+    <title>Snowflake</title>
+    <link rel="stylesheet" type="text/css" href="/resources/main.css" />
+    <link rel="shortcut icon" type="image/x-png" href="resources/favicon.png" />
+    <link type="text/css" rel="stylesheet" href="resources/prettify.css" />
 
-    <h2>What is this library?</h2>
+    <script type="text/javascript" src="resources/prettify.js"></script>
+  </head>
+
+  <body onload="prettyPrint()">
+    <h1>Snowflake</h1>
+    &nbsp;by <a href='http://maryrosecook.com'>Mary Rose Cook</a><br/>
+    Run code in particular circumstances<br/>
+
+    <h2>About</h2>
     <p>
-      Snowflake lets you run a piece of code once, or every two seconds, or when a value changes, or when it stops changing.  It is useful for debugging a function that is run frequently.
+      Snowflake lets you run a piece of code once, or every so often.  It is useful for debugging a function that is run frequently.
     </p>
 
-    <script src="https://gist.github.com/1144952.js?file=quickexamples.js"></script>
+    <h2>Get the code</h2>
+    <ul>
+      <li><a href='src/snowflake.js'>Development version</a></li>
+      <li><a href='https://github.com/maryrosecook/snowflake'>GitHub</a></li>
+      <li><a href='http://npmjs.org/snowflake'>npm</a> &nbsp;<code>$ npm install snowflake</code></li>
+    </ul>
+
+    <h2>Example</h2>
+
+<pre class="prettyprint">
+&lt;script type="text/javascript" src="src/snowflake.js"&tg;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+  var problemFn = function() {
+    var interestingVar = 0;
+
+    // print out interestingVar once, even though problemFn is run more than once
+    s.once(function() {
+      console.log(interestingVar);
+    });
+
+    // print out interestingVar every two seconds
+    s.every(function() {
+      console.log(interestingVar);
+    }, 2000);
+
+    interestingVar++;
+  };
+
+  while(true) {
+    problemFn();
+  };
+&lt;script type="text/javascript"&gt;
+</pre>
 
     <h2>Licence</h2>
 
     <p>
       The <a href='http://github.com/maryrosecook/snowflakejs'>code</a> is open source, under the MIT licence.
-
-    <h2>Reference</h2>
-
-    <h3>The basic idea</h3>
-    <p>
-      There are four functions in Snowflake: <code>once()</code>, <code>every()</code>, <code>stuck()</code> and <code>change()</code>.  They are all used in the same basic way:
-
-      <script src="https://gist.github.com/1144952.js?file=basicidea.js"></script>
-
-      First, you make an instance of Snowflake.  Second, you call a snowflake function
-      on the instance.  Third, in some cases, you pass arguments that the snowflake function needs (like an interval
-      for the <code>every()</code> function).  Fourth, you pass the action function to run.
-      Fifth, and optionally, you pass an argument that will get passed into the action function.
-    </p>
-
-    <h3>once()</h3>
-    <p>
-      <script src="https://gist.github.com/1144952.js?file=once.js"></script>
-
-      <ul>
-        <li><code>optionalArgument</code> gets passed into the action function.</li>
-      </ul>
-    </p>
-
-    <h3>every()</h3>
-    <p>
-      <script src="https://gist.github.com/1144952.js?file=every.js"></script>
-
-      <ul>
-        <li><code>interval</code> is an integer and is in seconds.</li>
-        <li><code>optionalArgument</code> gets passed into the action function.</li>
-      </ul>
-    </p>
-
-    <h3>stuck()</h3>
-    <p>
-      <script src="https://gist.github.com/1144952.js?file=stuck.js"></script>
-
-      <ul>
-        <li>The first argument is an array of variables to watch.</li>
-        <li>If <code>watchVar1</code> or <code>watchVar2</code> have the same value
-          as the previous go round, the action function is run.</li>
-        <li><code>optionalArgument</code> gets passed into the action function.</li>
-      </ul>
-
-    </p>
-
-    <h3>change()</h3>
-    <p>
-      <script src="https://gist.github.com/1144952.js?file=change.js"></script>
-
-      <ul>
-        <li>The first argument is an array of variables to watch.</li>
-        <li>If <code>watchVar1</code> or <code>watchVar2</code> have a different value
-          to the previous go round, the action function is run.</li>
-        <li><code>optionalArgument</code> gets passed into the action function.</li>
-      </ul>
-
-    </p>
 
     <br/>
     <hr/>

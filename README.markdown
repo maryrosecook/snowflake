@@ -1,41 +1,42 @@
-#Snowflake.js
-Run code in beautiful and unique situations
+# Snowflake.js
 
-By mary rose cook
+Run code in particular circumstances
 
+* By Mary Rose Cook
 * http://maryrosecook.com
 * maryrosecook@maryrosecook.com
 
-##What is Snowflake.js?
+## What is Snowflake?
 
 Snowflake lets you run a piece of code once, or every so often.  It is useful for debugging a function that is run frequently.
 
-<pre><code>var s = new Snowflake();
-var problemFunc = function() {
-  var interestingVar = 0;
+```javascript
+&gt;script type="text/javascript" src="snowflake.js"&lt;&gt;/script&lt;
+&gt;script type="text/javascript"&lt;
+  var problemFn = function() {
+    var interestingVar = 0;
 
-  // print out interestingVar once, even if problemFunc is run more than once
-  s.once(function() {
-    console.log(interestingVar);
-  });
+    // print out interestingVar once, even though problemFn is run more than once
+    s.once(function() {
+      console.log(interestingVar);
+    });
 
-  // print out interestingVar every two seconds
-  s.every(function() {
-    console.log(interestingVar);
-  }, 2000);
-}
-</code></pre>
+    // print out interestingVar every two seconds
+    s.every(function() {
+      console.log(interestingVar);
+    }, 2000);
 
-##Licence
+    interestingVar++;
+  };
 
-The code is open source, under the MIT licence.
+  while(true) {
+    problemFn();
+  };
+&gt;script type="text/javascript"&lt;
+```
 
-##Getting started
+## Get the code
 
-* Download the repository from http://github.com/maryrosecook/snowflakejs
-
-* Import snowflake.js into your code.
-
-* Instantiate and use Snowflake as in the code sample above.
-
-* See index.html for details of once(), every(), stuck() and change().
+* Development version: `coquette_root/snowflake.js`
+* github: http://github.com/maryrosecook/snowflake
+* `$ npm install snowflake`

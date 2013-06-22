@@ -1,6 +1,6 @@
 body {
-	font-family:verdana, Helvetica;
-	font-size:11px;
+	font-family:"Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, sans-serif;
+	font-size:12px;
     width: 500px;
     margin-left:auto;
     margin-right:auto;
@@ -10,7 +10,7 @@ body {
 a { color:black; }
 a:visited { color:black; }
 
-h1 { font-size: 30px; font-weight:normal; margin-top:0; margin-left:-2px; padding:0; display:inline; line-height:40px; }
+h1 { font-size: 30px; font-weight:normal; margin-top:0; margin-left:0px; padding:0; display:inline; line-height:40px; }
 h2 { font-size: 20px; font-weight:normal; margin:0; margin-top:16px; margin-bottom:2px; }
 h3 { font-size: 16px; font-weight:normal;  }
 h4 { font-size: 13px; font-weight:normal;  }
@@ -25,3 +25,14 @@ hr { color: #aaa; background-color:#aaa; height:1px; border:0; }
 
 ul { padding-left: 30px; }
 li { list-style:disc; padding:1px 30px 1px 0px; text-align:justify; }
+
+pre {
+  border-top:1px solid #ddd;
+  border-bottom:1px solid #ddd;
+  padding-top:15px;
+  padding-left:-50px;
+  margin-bottom:15px;
+  padding: 1em 0;
+  font-size:12px;
+  font-family: 'monaco', 'courier';
+}
