@@ -64,7 +64,7 @@
 
     run: function(action, arg) {
       // maybe if action is not function then just console.log
-      action(arg);
+      return action(arg);
     },
 
     calculateNextRun: function(interval) {
