@@ -1,4 +1,4 @@
-# Snowflake.js
+# Snowflake
 
 Run code in particular circumstances
 
