@@ -28,28 +28,28 @@ describe('snowflake', function() {
   describe('every', function() {
     it('should run every 10ms', function() {
       runs(function() {
-        expect(s.every(10, fn));
+        expect(s.every(fn, 10));
       });
       waits(15);
       runs(function() {
-        expect(s.every(10, fn));
+        expect(s.every(fn, 10));
         expect(run).toEqual(1);
       });
       waits(15);
       runs(function() {
-        expect(s.every(10, fn));
+        expect(s.every(fn, 10));
         expect(run).toEqual(2);
       });
     });
 
     it('should return return value only when run', function() {
       runs(function() {
-        expect(s.every(10, fn));
+        expect(s.every(fn, 10));
       });
       waits(15);
       runs(function() {
-        expect(s.every(10, fn)).toEqual(1);
-        expect(s.every(10, fn)).toEqual(undefined);
+        expect(s.every(fn, 10)).toEqual(1);
+        expect(s.every(fn, 10)).toEqual(undefined);
       });
     });
   });

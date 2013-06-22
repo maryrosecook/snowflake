@@ -12,7 +12,7 @@
     },
 
     // runs action every interval seconds
-    every: function(interval, action) {
+    every: function(action, interval) {
       var id = makeId(action);
       if(actions[id] === undefined) {
         actions[id] = {
