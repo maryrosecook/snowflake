@@ -17,12 +17,12 @@ Snowflake lets you run a piece of code once, or every so often.  It is useful fo
     var interestingVar = 0;
 
     // print out interestingVar once, even though problemFn is run more than once
-    s.once(function() {
+    snowflake.once(function() {
       console.log(interestingVar);
     });
 
     // print out interestingVar every two seconds
-    s.every(function() {
+    snowflake.every(function() {
       console.log(interestingVar);
     }, 2000);
 
