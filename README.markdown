@@ -11,8 +11,8 @@ Run code in particular circumstances
 Snowflake lets you run a piece of code once, or every so often.  It is useful for debugging a function that is run frequently.
 
 ```javascript
-&lt;script type="text/javascript" src="snowflake.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript"&gt;
+<script type="text/javascript" src="snowflake.js"></script>
+<script type="text/javascript">
   var problemFn = function() {
     var interestingVar = 0;
 
@@ -32,7 +32,7 @@ Snowflake lets you run a piece of code once, or every so often.  It is useful fo
   while(true) {
     problemFn();
   };
-&lt;script type="text/javascript"&gt;
+</script>
 ```
 
 ## Get the code
