@@ -1,4 +1,4 @@
-;(function() {
+;(function(exports) {
   var actions = {};
 
   exports.snowflake = {
@@ -58,4 +58,4 @@
   var calculateNextRun = function(interval) {
     return new Date().getTime() + interval;
   };
-}).call(this);
+})(this);
